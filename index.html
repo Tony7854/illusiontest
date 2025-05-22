@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>藝境智造奇點</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局樣式 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;  /* 使用 Google Noto Sans TC 中文字體 */
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.7; /* 增加預設行高 */
+        }
+        a {
+            color: #0078d7;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        h1, h2, h3 {
+            font-weight: 700;  /* 使用粗體 */
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px; /* 圖片圓角 */
+        }
+
+        /* 容器和間距 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* 導航欄 */
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky; /* 導航欄置頂 */
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0078d7;
+        }
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-item {
+            margin: 0 15px;
+        }
+        .nav-link {
+            color: #34495e;
+            font-size: 18px;
+            padding: 8px 16px;
+            border-radius: 5px;
+        }
+        .nav-link:hover {
+            background-color: #e9ecef;
+            color: #0078d7;
+        }
+
+        /* 首頁 */
+        #home {
+            background-color: #f0f8e7; /* 較淡的背景色 */
+            text-align: center;
+            padding: 100px 0;
+        }
+        #home h1 {
+            font-size: 48px;
+            color: #1e3d08; /* 深綠色標題 */
+            margin-bottom: 20px;
+        }
+        #home p {
+            font-size: 20px;
+            color: #3c763d; /* 深綠色段落 */
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #218838;
+        }
+
+        /* 課程單元 */
+        #modules {
+            background-color: #ffffff;
+        }
+        #modules h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .module-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+        .module-card:hover {
+            transform: translateY(-10px);
+        }
+        .module-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .module-card p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Artsteps 藝廊 */
+        #gallery {
+            background-color: #f8f9fa;
+        }
+        #gallery h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .gallery-item {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .gallery-item img {
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .gallery-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* 資源中心 */
+        #resources {
+            background-color: #ffffff;
+        }
+        #resources h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .resource-block {
+            padding: 30px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .resource-block h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        .resource-block ul {
+            list-style: none;
+            padding: 0;
+            font-size: 18px;
+        }
+        .resource-block li {
+            margin-bottom: 10px;
+        }
+
+        /* 關於我們 */
+        #about {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+            text-align: center;
+        }
+        #about h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        #about p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .team-member {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            text-align: center;
+        }
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .team-member h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .team-member p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* 頁腳 */
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">藝境智造奇點</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link" href="#home">首頁</a></li>
+                <li class="nav-item"><a class="nav-link" href="#modules">課程單元</a></li>
+                <li class="nav-item"><a class="nav-link" href="#gallery">Artsteps 藝廊</a></li>
+                <li class="nav-item"><a class="nav-link" href="#resources">資源中心</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">關於我們</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="section">
+        <div class="container">
+            <h1>藝境智造奇點</h1>
+            <p>探索 AI 賦能的創意設計，在虛擬藝境中實踐與創新。</p>
+            <a href="#modules" class="cta-button">開始學習</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="modules" class="section">
+            <div class="container">
+                <h2 class="section-title">課程單元</h2>
+                <div class="grid">
+                    <div class="module-card">
+                        <h3>Google (AI 探索)</h3>
+                        <p>學習使用 AI 驅動的設計資訊檢索工具和圖像生成工具，探索設計靈感。</p>
+                    </div>
+                    <div class="module-card">
+                        <h3>Resolve (AI 分析)</h3>
+                        <p>學習使用 AI 圖像/風格分析工具，解析經典設計作品的風格元素。</p>
+                    </div>
+                    <div class="module-card">
+                        <h3>Artwork Simulate (AI 模仿與變異)</h3>
+                        <p>學習使用 AI 風格遷移和圖像編輯工具，進行風格模仿和變異實驗。</p>
+                    </div>
+                    <div class="module-card">
+                        <h3>Style (AI 協同創作)</h3>
+                        <p>結合 AI 生成的元素和個人創意，發展獨特的設計風格，並在 Artsteps 中展示。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <div class="container">
+                <h2 class="section-title">Artsteps 藝廊</h2>
+                <div class="grid">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300" alt="學生作品 1">
+                        <h3>學生作品 1</h3>
+                        <p>AI 風格遷移：未來城市</p>
+                        <a href="https://www.artsteps.com/" target="_blank">在 Artsteps 上查看</a>  </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300" alt="學生作品 2">
+                        <h3>學生作品 2</h3>
+                        <p>AI 協同創作：虛擬時尚</p>
+                        <a href="https://www.artsteps.com/" target="_blank">在 Artsteps 上查看</a>  </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="section">
+            <div class="container">
+                <h2 class="section-title">資源中心</h2>
+                <div class="resource-block">
+                    <h3>AI 工具</h3>
+                    <ul>
+                        <li><a href="https://www.google.com/search?q=AI+image+generation+tools" target="_blank">AI 圖像生成工具</a></li>
+                        <li><a href="https://www.google.com/search?q=AI+style+transfer+tools" target="_blank">AI 風格遷移工具</a></li>
+                        </ul>
+                </div>
+                <div class="resource-block">
+                    <h3>GRASS 方法</h3>
+                    <p>GRASS 方法的詳細介紹、理論基礎和應用案例。</p>
+                    </div>
+                <div class="resource-block">
+                    <h3>設計資源</h3>
+                    <ul>
+                        <li><a href="https://www.creativeboom.com/" target="_blank">Creative Boom</a></li>
+                        <li><a href="https://www.designspiration.com/" target="_blank">Designspiration</a></li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">關於我們</h2>
+                <p>「藝境智造奇點」是一個致力於推廣 AI 賦能的創意設計教學平台。我們結合 GRASS 互動設計教學法和最新的生成式 AI 工具，引導學習者探索、模仿、創新，並在虛擬藝境中展示和交流。 我們的目標是培養具有未來競爭力的設計人才，能夠運用 AI 技術創造出獨特的藝術作品和設計方案。</p>
+                <div class="grid">
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150x150" alt="教師頭像 1">
+                        <h3>高軒然</h3>
+                        <p>生成式設計專家</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150x150" alt="教師頭像 2">
+                        <h3>高軒然</h3>
+                        <p>互動藝術教育者</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            &copy; 2024 藝境智造奇點. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript (此部分可根據平台功能進行調整)
+        //  例如：平滑滾動效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
